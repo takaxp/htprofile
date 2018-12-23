@@ -41,6 +41,11 @@
       (add-to-list 'htprofile--advice-list (cons func advice-name)))))
 
 ;;; profiler
+(defvar htprofile-remove-newline t
+  "When non-nil, remove newline in function names (recommended)")
+(defun htprofile-maybe-remove-newline (str)
+  (when htprofile-remove-newline
+    (replace-regexp-in-string "\n" " " str)))
 (defvar htprofile--data-count 0)
 (cl-defstruct (htprofile-data (:constructor make-htprofile-data--internal))
   "func-name must be a string"
@@ -62,7 +67,7 @@
           (htprofile-get-type-str (htprofile-data-type data)
                                   (htprofile-data-idle-time data))
           (htprofile-float-to-str (float-time (htprofile-data-elapsed-time data)))
-          (htprofile-data-func-name data)))
+          (htprofile-maybe-remove-newline (htprofile-data-func-name data))))
 (defun htprofile-get-data-header ()
   "get header"
   (let* ((description (format "elapsed time is shown as: %s\n"
@@ -194,8 +199,7 @@ The value should be one of the following:
             (htprofile-float-to-str (htprofile-stat-total-time stat))
             (htprofile-float-to-str (htprofile-stat-max-time stat))
             (htprofile-float-to-str (htprofile-stat-average-time stat))
-            (format "%s" (htprofile-stat-func stat))
-            )))
+            (htprofile-maybe-remove-newline (format "%s" (htprofile-stat-func stat))))))
 (defun htprofile-get-stat-header ()
   "get header"
   (let* ((description (concat (format "total-time, max-time, average-time are shown as: %s\n"
