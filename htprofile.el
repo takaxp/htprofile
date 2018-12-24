@@ -1,3 +1,37 @@
+;;; htprofile.el --- Htprofile
+
+;; Copyright (C) 2018-2019 shun
+
+;; Author: *** ***
+;; Keywords: convenience
+;; Version: 0.0.1
+;; URL: https://github.com/shwaka/htprofile
+;; Package-Requires: ((emacs "24.4") (cl-lib "0.5"))
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Commentary:
+
+;; This package provides...
+;;
+
+;;; Change Log:
+
+;;; Code:
+
 (require 'cl-lib)
 (defvar htprofile-data-list ()
   "save data to this variable")
@@ -283,3 +317,5 @@ The value should be one of the following:
     (display-buffer (current-buffer))))
 
 (provide 'htprofile)
+
+;;; htprofile.el ends here
